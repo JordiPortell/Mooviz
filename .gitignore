@@ -31,3 +31,9 @@ node_modules
 .DS_Store
 
 .idea
+.idea/vcs.xml
+*.xml
+.idea/vcs.xml
+.idea/encodings.xml
+public/styles/bootstrap/mixins/alerts.less
+*.xml
