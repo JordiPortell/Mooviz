@@ -31,15 +31,27 @@ block content
 			.col-lg-3.col-md-4.col-xs-6.thumb
 				a.thumbnail(href='#')
 					img.img-responsive(src='http://placehold.it/400x300', alt='')
+					
+			
+			
 
 
-	if user && user.canAccessKeystone
-			p
-				a(href='/keystone').btn.btn-lg.btn-primary Open the Admin UI
-		else
-			p We have created a default Admin user for you with the email <strong>user@keystonejs.com</strong> and the password <strong>admin</strong>.
-			p
-				a(href='/keystone/signin', style='margin-right: 10px').btn.btn-lg.btn-primary Sign in
-				|  to use the Admin UI.
-	
-	
+
+
+		if user && user.canAccessKeystone
+				p
+					a(href='/keystone').btn.btn-lg.btn-primary Open the Admin UI
+			else
+				p We have created a default Admin user for you with the email <strong>user@keystonejs.com</strong> and the password <strong>admin</strong>.
+				p
+					a(href='/keystone/signin', style='margin-right: 10px').btn.btn-lg.btn-primary Sign in
+					|  to use the Admin UI.
+		br
+		
+		form(method='post', action='/')
+			input(type='hidden', name='action', value='search')
+			.input-group.col-xs-3(name='moviesearch')
+				input.form-control(type='text', name='text')
+				span.input-group-btn
+					button.btn.btn-default(type='submit') Rechercher les films
+
