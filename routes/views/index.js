@@ -9,31 +9,40 @@ exports = module.exports = function(req, res) {
 	// item in the header navigation.
 	locals.section = 'home';
 
-	omdb.search('Star Wars', function(err, movies) {
-		if(err) {
-			return console.error(err);
-		}
+	// On POST requests, add the Enquiry item to the database
+	view.on('post', { action: 'search' }, function(next) {
 
-		if(movies.length < 1) {
-			return console.log('No movies were found!');
-		}
+		console.log(req.body.text);
+		
+		omdb.search('Star Wars', function(err, movies) {
+			if(err) {
+				return console.error(err);
+			}
 
-		movies.forEach(function(movie) {
-			console.log('%s (%d)', movie.title, movie.year);
+			if(movies.length < 1) {
+				return console.log('No movies were found!');
+			}
+
+			movies.forEach(function(movie) {
+				console.log('%s (%d)', movie.title, movie.year);
+			});
 		});
+
+		omdb.get({ title: 'Star Wars', year: 1999 }, true, function(err, movie) {
+			if(err) {
+				return console.error(err);
+			}
+			if(!movie) {
+				return console.log('Movie not found!');
+			}
+			console.log('%s (%d) %d/10', movie.title, movie.year, movie.imdb.rating);
+			console.log(movie.plot);
+		});
+		
+		//document.getElementById("moviesearch").appendChild('<br>TEST');
+
 	});
 
-	omdb.get({ title: 'Star Wars', year: 1999 }, true, function(err, movie) {
-		if(err) {
-			return console.error(err);
-		}
-		if(!movie) {
-			return console.log('Movie not found!');
-		}
-		console.log('%s (%d) %d/10', movie.title, movie.year, movie.imdb.rating);
-		console.log(movie.plot);
-	});
-	
 	
 	// Render the view
 	view.render('index');
