@@ -68,10 +68,7 @@ html
 											a(href='#') Les plus vues
 							ul.nav.navbar-nav.navbar-right
 											if user
-												user
-												li: a(href='/keystone/signout') Se déconnecter
 												if user.canAccessKeystone
-													
 												span.caret
 												ul.nav.navbar-nav.navbar-right
 													li.dropdown
