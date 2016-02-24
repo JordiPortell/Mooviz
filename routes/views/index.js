@@ -25,7 +25,7 @@ exports = module.exports = function(req, res) {
 			
 			movies.forEach(function(movie) {
 				console.log('%s (%d)', movie.title, movie.year);
-				var Nmovie = keystone.list('movie');
+				var Nmovie = keystone.list('movies');
 
 				var newMovie = new Nmovie.model({
 					Title: movie.title,
