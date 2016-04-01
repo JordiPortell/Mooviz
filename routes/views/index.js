@@ -12,8 +12,10 @@ exports = module.exports = function(req, res) {
 	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'search' }, function(next) {
 
-		console.log(req.body.text);
+		//console.log(req.body.text); affiche contenu input
 		
+		
+		//Recherche une liste de films contenant le premier argument
 		omdb.search('star', function(err, movies) {
 			if(err) {
 				return console.error(err);
@@ -23,44 +25,61 @@ exports = module.exports = function(req, res) {
 				return console.log('No movies were found!');
 			}
 			
-			movies.forEach(function(movie) {
-				console.log('%s (%d)', movie.title, movie.year);
-				var Nmovie = keystone.list('movies');
+			//Pour chaque films de la recherche :
+			movies.forEach(function(m) {
+				
+				
+				//Recherche spécifique sur un film avec tous les champs de l'objet omdb
+				omdb.get({ title: m.title }, true, function(err, movie) {
+					if(err) {
+						return console.error(err);
+					}
 
-				var newMovie = new Nmovie.model({
-					Title: movie.title,
-					Year: movie.year,
-					Rated: movie.rated,
-					Released: movie.released,
-					Runtime: movie.runtime,
-					Genre: movie.genre,
-					Director: movie.director,
-					Writer: movie.writer,
-					Actors: movie.actors,
-					Plot: movie.plot,
-					Language: movie.language,
-					Country: movie.country,
-					Awards: movie.awards,
-					Poster: movie.poster,
-					Metascore: movie.metascore,
-					imdbRating: movie.imdbRating,
-					imdbVotes: movie.imdbVotes,
-					imdbID: movie.imdbID,
-					Type: movie.type,
-					Response: movie.response
-				});
+					if(!movie) {
+						return console.log('Movie not found!');
+					}
+
+					console.log('%s (%d)\n Rating : %s', movie.title, movie.year,movie.imdb.rating);
+					//console.log(JSON.stringify(movie)+'\n');
+
+					var Nmovie = keystone.list('Movie');
+
+					var newMovie = new Nmovie.model({
+						Title: movie.title,
+						Year: movie.year,
+						Rated: movie.rated,
+						Released: movie.released,
+						Runtime: movie.runtime,
+						Genre: movie.genres,
+						Director: movie.director,
+						Writer: movie.writers,
+						Actors: movie.actors,
+						Plot: movie.plot,
+						Language: movie.language,
+						Country: movie.countries,
+						Awards: movie.imdb.awards,
+						Poster: movie.poster,
+						Metascore: movie.imdb.metacritic,
+						imdbRating: movie.imdb.rating,
+						imdbVotes: movie.imdb.votes,
+						imdbID: movie.imdb.id,
+						Type: movie.type
+					});
 
 
-				newMovie.save(function(err) {
-					// post has been saved	
+					newMovie.save(function(err) {
+						// post has been saved	
+					}); 
+					
+					if(err) {
+						return console.error(err);
+					}
 				});
 			});
 		});
 
 	
-
 	});
-
 	
 	// Render the view
 	view.render('index');

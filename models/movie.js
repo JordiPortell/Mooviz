@@ -29,8 +29,7 @@ Movie.add(
  imdbRating:{type:Types.Number},
  imdbVotes:{type:Types.Number},
  imdbID:{type:Types.Number},
- Type:{type:String},
- Response:{type:Types.Boolean}
+ Type:{type:String}
 });
 
 Movie.schema.virtual('content.full').get(function() {
