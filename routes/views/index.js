@@ -39,11 +39,11 @@ exports = module.exports = function(req, res) {
 						return console.log('Movie not found!');
 					}
 
-					console.log('%s (%d)\n Rating : %s', movie.title, movie.year,movie.imdb.rating);
+					console.log('%s (%d)\n Rating : %s', movie.title, movie.year);
 					//console.log(JSON.stringify(movie)+'\n');
 
 					var Nmovie = keystone.list('Movie');
-
+					
 					var newMovie = new Nmovie.model({
 						Title: movie.title,
 						Year: movie.year,
@@ -68,12 +68,11 @@ exports = module.exports = function(req, res) {
 
 
 					newMovie.save(function(err) {
+						console.error(err);
 						// post has been saved	
 					}); 
 					
-					if(err) {
-						return console.error(err);
-					}
+					
 				});
 			});
 		});

@@ -13,7 +13,7 @@ Movie.add(
 {
  Title:{type:String,required :true},
  Year:{type:Types.Number},
- Rated: {type:Types.Number},
+ Rated: {type:String},
  Released: {type:Types.Date},
  Runtime:{type:String},
  Genre:{type:String},
@@ -28,7 +28,7 @@ Movie.add(
  Metascore:{type:Types.Number},
  imdbRating:{type:Types.Number},
  imdbVotes:{type:Types.Number},
- imdbID:{type:Types.Number},
+ imdbID:{type:String},
  Type:{type:String}
 });
 
