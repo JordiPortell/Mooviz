@@ -24,7 +24,7 @@ Movie.add(
  Language:{type:String},
  Country:{type:String},
  Awards:{type:String},
- Poster:{type: Types.CloudinaryImage},
+ Poster:{type:String},
  Metascore:{type:Types.Number},
  imdbRating:{type:Types.Number},
  imdbVotes:{type:Types.Number},

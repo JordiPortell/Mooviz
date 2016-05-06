@@ -1,6 +1,8 @@
 var keystone = require('keystone');
 var omdb = require('omdb');
 
+	
+
 exports = module.exports = function(req, res) {
 	
 	var view = new keystone.View(req, res);
@@ -8,6 +10,9 @@ exports = module.exports = function(req, res) {
 	// locals.section is used to set the currently selected
 	// item in the header navigation.
 	locals.section = 'home';
+	
+	
+	
 
 	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'search' }, function(next) {

@@ -3,42 +3,16 @@ extends ../layouts/default
 block content
 	.container
 		h3 Notre séléction
-		hr
-		.row
-			.col-lg-3.col-md-4.col-xs-6.thumb
-				a.thumbnail(href='#')
-					img.img-responsive(src='http://tvcloud.fr/banners/series/fanart/459.jpg', alt='')
-				span Dr. House
-			.col-lg-3.col-md-4.col-xs-6.thumb
-				a.thumbnail(href='#')
-					img.img-responsive(src='http://tvcloud.fr/banners/series/fanart/456.jpg', alt='')
-				span The walking dead
-			.col-lg-3.col-md-4.col-xs-6.thumb
-				a.thumbnail(href='#')
-					img.img-responsive(src='http://placehold.it/400x300', alt='')
-			.col-lg-3.col-md-4.col-xs-6.thumb
-				a.thumbnail(href='#')
-					img.img-responsive(src='http://placehold.it/400x300', alt='')
-			.col-lg-3.col-md-4.col-xs-6.thumb
-				a.thumbnail(href='#')
-					img.img-responsive(src='http://placehold.it/400x300', alt='')
-			.col-lg-3.col-md-4.col-xs-6.thumb
-				a.thumbnail(href='#')
-					img.img-responsive(src='http://placehold.it/400x300', alt='')
-			.col-lg-3.col-md-4.col-xs-6.thumb
-				a.thumbnail(href='#')
-					img.img-responsive(src='http://placehold.it/400x300', alt='')
-			.col-lg-3.col-md-4.col-xs-6.thumb
-				a.thumbnail(href='#')
-					img.img-responsive(src='http://placehold.it/400x300', alt='')
-					
-			
-			
+			.row
+				each movies in data.movies
+					.col-lg-3.col-md-4.col-xs-6.thumb
+						img.img-responsive(src=movies.Poster, alt='')
+						
 
 
 
 
-		if user && user.canAccessKeystone
+	if user && user.canAccessKeystone
 				p
 					a(href='/keystone').btn.btn-lg.btn-primary Open the Admin UI
 			else
@@ -46,13 +20,14 @@ block content
 				p
 					a(href='/keystone/signin', style='margin-right: 10px').btn.btn-lg.btn-primary Sign in
 					|  to use the Admin UI.
-		br
 		
-		form(method='post', action='/')
-			input(type='hidden', name='action', value='search')
-			.input-group.col-xs-3(name='moviesearch')
-				input.form-control(type='number', name='text', minlength='4', maxlength='4', value='2016')
-				span.input-group-btn
-					button.btn.btn-default(type='submit') Rechercher les films
+	
 
 
+
+	form(method='post', action='/')
+		input(type='hidden', name='action', value='search')
+		.input-group.col-xs-3(name='moviesearch')
+			input.form-control(type='number', name='text', minlength='4', maxlength='4', value='2016')
+			span.input-group-btn
+				button.btn.btn-default(type='submit') Rechercher les films
