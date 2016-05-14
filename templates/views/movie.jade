@@ -1,0 +1,28 @@
+//Created by jordi_2 on 12/05/2016.
+extends ../layouts/default
+
+block content
+	.container
+		h3 Fiche technique
+		.row
+			.media
+				.media-left
+					a(href='#')
+					img.media-object(src=data.movie.Poster, alt='')
+				.media-body
+					h4.media-heading #{data.movie.Title}
+					hr
+					hr
+					ul
+						li Année de sortie : #{data.movie.Year}
+						li Durée : #{data.movie.Runtime} minutes
+						li Réalisateur : #{data.movie.Director}
+						li Casting : #{data.movie.Actors}
+						li Genres : #{data.movie.Genre}
+						li Nationalité : #{data.movie.Country}
+						li Note : #{data.movie.imdbRating}
+					.panel.panel-default
+						.panel-heading
+							h3.panel-title Synopsis
+						.panel-body
+							.panel-body #{data.movie.Plot}

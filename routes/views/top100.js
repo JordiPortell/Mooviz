@@ -1,5 +1,5 @@
 /**
- * Created by jordi_2 on 06/05/2016.
+ * Created by jordi_2 on 12/05/2016.
  */
 var keystone = require('keystone');
 var movie = keystone.list('Movie');
@@ -8,20 +8,21 @@ exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 	locals.data = {
-		movies: []
+		movie: []
 	};
-
-	// Set locals
+// Set locals
 	locals.section = 'movie';
 
-	// Load the galleries by sortOrder
-	movie.model.find()
+	movie.model.find().sort('-imdbRating')
 			.exec()
 			.then(function (movies) { //first promise fulfilled
-				locals.data.movies=movies;
+				locals.data.movie=movies;
+				console.log(movies);
 			}, function (err) { //first promise rejected
 				throw err;
-			}).then(function (result) { //second promise fulfilled
+			}).then(function (result) {
+				console.log(result);
+				//second promise fulfilled
 				//do something with final results
 			}, function (err) { //something happened
 				//catch the error, it can be thrown by any promise in the chain
@@ -29,6 +30,6 @@ exports = module.exports = function(req, res) {
 			});
 
 	// Render the view
-	view.render('index');
+	view.render('top100');
 
 };

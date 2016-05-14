@@ -1,0 +1,28 @@
+//Created by jordi_2 on 12/05/2016.
+extends ../layouts/default
+block content
+	.container
+		h3 Top 100
+		.row
+			each movie in data.movie
+				.media
+					.media-left
+						a(href='#')
+						img.media-object(src=movie.Poster, alt='Responsive image').img-fluid
+					.media-body
+						h4.media-heading #{movie.Title}
+						hr
+						hr
+						ul
+							li Année de sortie : #{movie.Year}
+							li Durée : #{movie.Runtime} minutes
+							li Réalisateur : #{movie.Director}
+							li Casting : #{movie.Actors}
+							li Genres : #{movie.Genre}
+							li Nationalité : #{movie.Country}
+							li Note : #{movie.imdbRating}
+						.panel.panel-default
+							.panel-heading
+								h3.panel-title Synopsis
+							.panel-body
+								.panel-body #{movie.Plot}
