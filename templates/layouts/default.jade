@@ -64,8 +64,9 @@ html
 									li
 										a(href='#') Les plus vues
 						ul.nav.navbar-nav.navbar-right
-							form.navbar-form.navbar-right
-								input.form-control(type='text', placeholder='Recherche ...' action='/search')
+							form(action='/search',method='get')
+								form.navbar-form.navbar-right
+									input.form-control(type='text',value="",name="recherche",id="recherche",onchange="myfunction()", placeholder='Recherche ...')
 								
 		//- BODY
 		#body
@@ -112,3 +113,4 @@ html
 
 		//- Include template-specific javascript files by extending the js block
 		block js
+			script(src='/js/exemple.js')

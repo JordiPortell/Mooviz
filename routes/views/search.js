@@ -10,18 +10,21 @@ exports = module.exports = function(req, res) {
 	locals.data = {
 		movie: []
 	};
+	
+	var data= req.query;
+	
 // Set locals
 	locals.section = 'movie';
-
-	movie.model.find(({"Title": /.*m.*/}))
+	var str=data['recherche'];
+	str=str.substring(0,1).toUpperCase()+str.substring(1,str.length);
+	movie.model.find(({"Title": {$regex:str}}))
 			.exec()
 			.then(function (movies) { //first promise fulfilled
 				locals.data.movie=movies;
-				console.log(movies);
+				view.render('search');
 			}, function (err) { //first promise rejected
 				throw err;
 			}).then(function (result) {
-				console.log(result);
 				//second promise fulfilled
 				//do something with final results
 			}, function (err) { //something happened
@@ -30,6 +33,5 @@ exports = module.exports = function(req, res) {
 			});
 
 	// Render the view
-	view.render('top100');
-
+	
 };

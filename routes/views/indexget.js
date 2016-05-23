@@ -15,10 +15,13 @@ exports = module.exports = function(req, res) {
 	locals.section = 'movie';
 
 	// Load the galleries by sortOrder
-	movie.model.find()
+
+	
+	 movie.model.find()
 			.exec()
 			.then(function (movies) { //first promise fulfilled
 				locals.data.movies=movies;
+				 view.render('index');
 			}, function (err) { //first promise rejected
 				throw err;
 			}).then(function (result) { //second promise fulfilled
@@ -29,6 +32,6 @@ exports = module.exports = function(req, res) {
 			});
 
 	// Render the view
-	view.render('index');
+	
 
 };
