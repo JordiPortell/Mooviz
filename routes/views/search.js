@@ -16,8 +16,8 @@ exports = module.exports = function(req, res) {
 // Set locals
 	locals.section = 'movie';
 	var str=data['recherche'];
-	str=str.substring(0,1).toUpperCase()+str.substring(1,str.length);
-	movie.model.find(({"Title": {$regex:str}}))
+	//str=str.substring(0,1).toUpperCase()+str.substring(1,str.length);
+	movie.model.find(({"Title": {$regex:str,$options:'i'}}))
 			.exec()
 			.then(function (movies) { //first promise fulfilled
 				locals.data.movie=movies;
