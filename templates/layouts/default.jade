@@ -56,11 +56,16 @@ html
 									span.caret
 								ul.dropdown-menu
 									li
-										a(href='#') Tous les films
-									li
-										a(href='/top100') Top 100
+										a(href='/top100?page=1') Top 100
 									li
 										a(href='/nouveaute?page=1') Nouveauté
+							li.dropdown
+								a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+									| Admin 
+									span.caret
+								ul.dropdown-menu
+									li
+										a(href='/ajoutfilm') Ajouter des films
 						ul.nav.navbar-nav.navbar-right
 							form(action='/search',method='get')
 								form.navbar-form.navbar-right

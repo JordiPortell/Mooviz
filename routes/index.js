@@ -41,6 +41,9 @@ exports = module.exports = function(app) {
 	app.get('/', routes.views.indexget);
 	app.get('/getmovie', routes.views.movie);
 	app.get('/top100', routes.views.top100);
+	app.get('/nouveaute', routes.views.nouveaute);
+	app.get('/ajoutfilm', routes.views.ajoutfilm);
+	app.post('/ajoutadmin1', routes.views.ajoutadmin1);
 	app.all('/contact', routes.views.contact);
 	app.get('/search', routes.views.search);
 	

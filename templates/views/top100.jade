@@ -4,6 +4,7 @@ block content
 	.container
 		h3 Top 100
 		.row
+			br
 			each movie in data.movie
 				.media
 					.media-left
@@ -20,9 +21,34 @@ block content
 							li Casting : #{movie.Actors}
 							li Genres : #{movie.Genre}
 							li Nationalité : #{movie.Country}
-							li Note : #{movie.imdbRating}
+							li Note : #{movie.imdbRating}/10
 						.panel.panel-default
 							.panel-heading
 								h3.panel-title Synopsis
 							.panel-body
 								.panel-body #{movie.Plot}
+	
+	footer
+		center
+			nav
+				ul.pagination
+					if(data.currentPage!=1)
+						li.page-item
+							a.page-link(href='/top100?page='+(data.currentPage-1), aria-label='Previous')
+								span(aria-hidden='true') «
+								span.sr-only Previous
+					li.page-item
+						a.page-link(href='/top100?page='+1) 1
+					li.page-item
+						a.page-link(href='/top100?page='+2) 2
+					li.page-item
+						a.page-link(href='/top100?page='+3) 3
+					li.page-item
+						a.page-link(href='/top100?page='+4) 4
+					li.page-item
+						a.page-link(href='/top100?page='+5) 5
+					if(data.currentPage<5)
+						li.page-item
+							a.page-link(href='/top100?page='+(data.currentPage-(-1)), aria-label='Next')
+								span(aria-hidden='true') »
+								span.sr-only Next

@@ -18,8 +18,8 @@ exports = module.exports = function(req, res) {
 	locals.section = 'movie';
 	movie.paginate({
 			page: locals.data.currentPage || 1,
-			perPage: 5,
-			maxPages: 10
+			perPage: 10,
+			maxPages: 5
 		})
 		.sort('-Released')
 		.exec(function(err, results) {

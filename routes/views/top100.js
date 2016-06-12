@@ -8,26 +8,25 @@ exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 	locals.data = {
-		movie: []
+		movie: [],
+		currentPage: 1
 	};
+
+	locals.data.currentPage = req.query.page;
+	
 // Set locals
 	locals.section = 'movie';
 
-	movie.model.find().sort('-imdbRating')
-			.exec()
-			.then(function (movies) { //first promise fulfilled
-				locals.data.movie=movies;
-				view.render('top100');	
-				console.log(movies);
-			}, function (err) { //first promise rejected
-				throw err;
-			}).then(function (result) {
-				console.log(result);
-				//second promise fulfilled
-				//do something with final results
-			}, function (err) { //something happened
-				//catch the error, it can be thrown by any promise in the chain
-				console.log(err);
+	movie.paginate({
+		page: locals.data.currentPage || 1,
+		perPage: 10,
+		maxPages: 5
+	})
+			.sort('-imdbRating')
+			.exec(function(err, results) {
+				locals.data.currentPage = req.query.page || 1;
+				locals.data.movie = results.results;
+				view.render('top100');
 			});
 
 	// Render the view
