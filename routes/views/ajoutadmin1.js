@@ -27,8 +27,6 @@ exports = module.exports = function(req, res) {
 		if(recherche.replace(' ', '') == '')
 		{
 			errSearchQuery = "Veuillez entrer une recherche valide";
-			// Render the view
-			view.render('ajoutfilm');
 		}
 		else{
 			//Recherche une liste de films contenant le premier argument
@@ -38,13 +36,11 @@ exports = module.exports = function(req, res) {
 				}
 
 				//Pour chaque films de la recherche :
-				console.log(movies.length);
-				for(i=0;i<movies.length;i++){
-				//movies.forEach(function(m) {
+				movies.forEach(function(m) {
 
 
 					//Recherche spécifique sur un film avec tous les champs de l'objet omdb
-					omdb.get({ title: movies[i].title }, true, function(err, movie) {
+					omdb.get({ title: m.title }, true, function(err, movie) {
 						if(err) {
 							return console.error(err);
 						}
@@ -80,24 +76,18 @@ exports = module.exports = function(req, res) {
 							Type: movie.type
 						});
 
-
 						newMovie.save(function(err) {
 							if(err) {
 								return console.error(err);
 							}
 							// post has been saved	
 						});
-
-
 					});
-				}
-				console.log('finit');
+				});
 			});
-		
 		}
-
+		next();
 	});
-
 	// Render the view
 	view.render('ajoutfilm');
 
