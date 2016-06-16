@@ -1,0 +1,29 @@
+//Created by Alexandre on 12/06/2016.
+extends ../layouts/default
+
+block content
+	.container
+		br
+		h3 Rechercher un film par son nom
+			.row
+				br
+				if(data.errSearchQuery!='ok')
+					.alert.alert-danger
+						strong Erreur !
+							data.errSearchQuery
+				form(method='post', action='/ajoutadmin1')
+					input(type='hidden', name='action', value='search')
+					.input-group.col-xs-3(name='moviesearch')
+						input.form-control(type='text', name='film')
+						span.input-group-btn
+							button.btn.btn-default(type='submit') Rechercher
+		br
+		br
+		h3 Importer une liste de films
+			.row
+				br
+				form(method='post', action='/ajoutadmin2')
+					.input-group.col-xs-3(name='moviesearch2')
+						input.filestyle(type='file', data-input='false', name='films')
+						span.input-group-btn
+							button.btn.btn-default(type='submit') Valider

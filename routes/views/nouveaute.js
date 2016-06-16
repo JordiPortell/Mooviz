@@ -11,23 +11,22 @@ exports = module.exports = function(req, res) {
 		movie: [],
 		currentPage: 1
 	};
-
+	
 	locals.data.currentPage = req.query.page;
 	
 // Set locals
 	locals.section = 'movie';
-
 	movie.paginate({
-		page: locals.data.currentPage || 1,
-		perPage: 10,
-		maxPages: 5
-	})
-			.sort('-imdbRating')
-			.exec(function(err, results) {
-				locals.data.currentPage = req.query.page || 1;
-				locals.data.movie = results.results;
-				view.render('top100');
-			});
+			page: locals.data.currentPage || 1,
+			perPage: 10,
+			maxPages: 5
+		})
+		.sort('-Released')
+		.exec(function(err, results) {
+			locals.data.currentPage = req.query.page || 1;
+			locals.data.movie = results.results;
+			view.render('nouveaute');
+		});
 
 	// Render the view
 

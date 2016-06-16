@@ -1,31 +1,30 @@
 /**
- * Created by jordi_2 on 12/05/2016.
+ * Created by Alexandre on 12/05/2016.
+ */
+/**
+ * Created by jordi_2 on 06/05/2016.
  */
 var keystone = require('keystone');
-var movie = keystone.list('Movie');
+movie = keystone.list('Movie')
 exports = module.exports = function(req, res) {
 
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 	locals.data = {
-		movie: []
+		movies: []
 	};
-	
-	var data= req.query;
-	console.log(data);
-// Set locals
+
+	// Set locals
 	locals.section = 'movie';
-	var str=data['recherche'];
-	//str=str.substring(0,1).toUpperCase()+str.substring(1,str.length);
-	movie.model.find(({"Title": {$regex:str,$options:'i'}}))
+
+	// Load the galleries by sortOrder
+	movie.model.find()
 			.exec()
 			.then(function (movies) { //first promise fulfilled
-				locals.data.movie=movies;
-				view.render('search');
+				locals.data.movies=movies;
 			}, function (err) { //first promise rejected
 				throw err;
-			}).then(function (result) {
-				//second promise fulfilled
+			}).then(function (result) { //second promise fulfilled
 				//do something with final results
 			}, function (err) { //something happened
 				//catch the error, it can be thrown by any promise in the chain
@@ -33,5 +32,6 @@ exports = module.exports = function(req, res) {
 			});
 
 	// Render the view
-	
+	view.render('index');
+
 };
