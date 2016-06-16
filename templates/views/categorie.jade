@@ -1,0 +1,43 @@
+//Created by jordi_2 on 12/05/2016.
+extends ../layouts/default
+block content
+	.container
+		h3 Catégorie
+		.row
+			br
+	each movie in data.movie
+		.media
+			.media-left
+				a(href='#')
+				img.media-object(src=movie.Poster, alt='Responsive image').img-fluid
+			.media-body
+				h4.media-heading #{movie.Title}
+				hr
+				hr
+				ul
+					li Date : #{(movie.Released != null ? movie.Released.toDateString() : 'Inconnue')}
+					li Durée : #{movie.Runtime} minutes
+					li Réalisateur : #{movie.Director}
+					li Casting : #{movie.Actors}
+					li Genres : #{movie.Genre}
+					li Nationalité : #{movie.Country}
+					li Note : #{movie.imdbRating}/10
+				.panel.panel-default
+					.panel-heading
+						h3.panel-title Synopsis
+					.panel-body
+						.panel-body #{movie.Plot}
+	footer
+		center
+			nav
+				ul.pager
+					if(data.currentPage != 1)
+						li.previous
+							a(href='/categorie?page=' + (data.currentPage - 1) + '&cat=' + data.cat, aria-label='Previous')
+								span(aria-hidden='true') ←
+								|  Précédent
+					if(data.currentPage < data.totalPages)
+						li.next
+							a(href='/categorie?page=' + (data.currentPage - (-1)) + '&cat=' + data.cat, aria-label='Next')
+								| Suivant 
+								span(aria-hidden='true') →	

@@ -32,25 +32,14 @@ block content
 	footer
 		center
 			nav
-				ul.pagination
-					if(data.currentPage!=1)
-						li.page-item
-							a.page-link(href='/nouveaute?page='+(data.currentPage-1), aria-label='Previous')
-								span(aria-hidden='true') «
-								span.sr-only Previous
-					li.page-item
-						a.page-link(href='/nouveaute?page='+1) 1
-					li.page-item
-						a.page-link(href='/nouveaute?page='+2) 2
-					li.page-item
-						a.page-link(href='/nouveaute?page='+3) 3
-					li.page-item
-						a.page-link(href='/nouveaute?page='+4) 4
-					li.page-item
-						a.page-link(href='/nouveaute?page='+5) 5
-					if(data.currentPage<5)
-						li.page-item
-							a.page-link(href='/nouveaute?page='+(data.currentPage-(-1)), aria-label='Next')
-								span(aria-hidden='true') »
-								span.sr-only Next
-
+				ul.pager
+					if(data.currentPage != 1)
+						li.previous
+							a(href='/nouveaute?page=' + (data.currentPage - 1))
+								span(aria-hidden='true') ←
+								|  Précédent
+					if(data.currentPage < data.totalPages)
+						li.next
+							a(href='/nouveaute?page=' + (data.currentPage - (-1)))
+								| Suivant 
+								span(aria-hidden='true') →	

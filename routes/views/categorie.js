@@ -1,4 +1,7 @@
 /**
+ * Created by Alexandre on 16/06/2016.
+ */
+/**
  * Created by jordi_2 on 12/05/2016.
  */
 var keystone = require('keystone');
@@ -9,26 +12,30 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
 	locals.data = {
 		movie: [],
+		currentPage: 1,
 		totalPages: 1,
-		currentPage: 1
+		cat: 'Action'
 	};
-	
-	var data= req.query;
-	
-	// Set locals
+
+	locals.data.currentPage = req.query.page;
+	locals.data.cat = req.query.cat;
+	console.log(req.query.cat);
+// Set locals
 	locals.section = 'movie';
-	var str=data['recherche'];
 
 	movie.paginate({
 		page: locals.data.currentPage || 1,
 		perPage: 10
 	})
-			.where('Title', {$regex:str,$options:'i'})//.regex(str)
+			.where('Genre').regex(locals.data.cat)
 			.sort('-Released')
 			.exec(function(err, results) {
 				locals.data.totalPages = results.totalPages;
 				locals.data.currentPage = req.query.page || 1;
 				locals.data.movie = results.results;
-				view.render('search');
+				view.render('categorie');
 			});
+
+	// Render the view
+
 };

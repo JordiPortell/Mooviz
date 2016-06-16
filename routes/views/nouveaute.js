@@ -9,7 +9,8 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
 	locals.data = {
 		movie: [],
-		currentPage: 1
+		currentPage: 1,
+		totalPages: 1
 	};
 	
 	locals.data.currentPage = req.query.page;
@@ -18,11 +19,11 @@ exports = module.exports = function(req, res) {
 	locals.section = 'movie';
 	movie.paginate({
 			page: locals.data.currentPage || 1,
-			perPage: 10,
-			maxPages: 5
+			perPage: 10
 		})
 		.sort('-Released')
 		.exec(function(err, results) {
+			locals.data.totalPages = results.totalPages;
 			locals.data.currentPage = req.query.page || 1;
 			locals.data.movie = results.results;
 			view.render('nouveaute');

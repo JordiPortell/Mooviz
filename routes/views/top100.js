@@ -9,7 +9,9 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
 	locals.data = {
 		movie: [],
+		totalPages: 1,
 		currentPage: 1
+		
 	};
 
 	locals.data.currentPage = req.query.page;
@@ -20,15 +22,14 @@ exports = module.exports = function(req, res) {
 	movie.paginate({
 		page: locals.data.currentPage || 1,
 		perPage: 10,
-		maxPages: 5
+		maxPages: 10
 	})
 			.sort('-imdbRating')
 			.exec(function(err, results) {
+				locals.data.totalPages = results.totalPages;
 				locals.data.currentPage = req.query.page || 1;
 				locals.data.movie = results.results;
 				view.render('top100');
 			});
-
-	// Render the view
 
 };
