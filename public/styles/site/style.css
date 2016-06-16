@@ -5,3 +5,16 @@
 .container{
 	margin-top: 30px;
 }
+
+
+.img-rounded {
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	transition: all 1s ease;
+}
+
+.img-rounded:hover {
+	opacity: 0.3; filter: alpha(opacity=30);
+}

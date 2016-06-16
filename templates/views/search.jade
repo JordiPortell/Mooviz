@@ -3,8 +3,9 @@
 extends ../layouts/default
 block content
 	.container
-		h3 Top 100
+		h3 Recherche de film
 		.row
+		hr
 	if data.movie.length		
 		each movie in data.movie
 			.media
@@ -30,3 +31,19 @@ block content
 							.panel-body #{movie.Plot}
 	else
 		h3.text-muted There are no Movies yet.
+
+		
+	footer
+		center
+			nav
+				ul.pager
+					if(data.currentPage != 1)
+						li.previous
+							a(href='/search?page=' + (data.currentPage - 1))
+								span(aria-hidden='true') ←
+								|  Précédent
+					if(data.currentPage < data.totalPages)
+						li.next
+							a(href='/search?page=' + (data.currentPage - (-1)))
+								| Suivant 
+								span(aria-hidden='true') →	

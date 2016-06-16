@@ -20,6 +20,8 @@ exports = module.exports = function(req, res) {
 				 .exec()
 				 .then(function (movies) { //first promise fulfilled
 					 locals.data.movie=movies;
+					 // Render the view
+					 view.render('movie');
 				 }, function (err) { //first promise rejected
 					 throw err;
 				 }).then(function (result) { 
@@ -33,7 +35,6 @@ exports = module.exports = function(req, res) {
 
 	//});
 	
-	// Render the view
-	view.render('movie');
+	
 
 };
