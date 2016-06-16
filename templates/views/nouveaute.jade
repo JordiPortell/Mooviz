@@ -16,7 +16,7 @@ block content
 						hr
 						hr
 						ul
-							li Année de sortie : #{movie.Year}
+							li Date : #{(movie.Released!=null?movie.Released.toDateString():'Inconnue')}
 							li Durée : #{movie.Runtime} minutes
 							li Réalisateur : #{movie.Director}
 							li Casting : #{movie.Actors}
