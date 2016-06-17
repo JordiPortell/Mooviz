@@ -3,6 +3,7 @@
 extends ../layouts/default
 block content
 	.container
+		hr
 		h3 Recherche de film
 		.row
 		hr
@@ -10,8 +11,11 @@ block content
 		each movie in data.movie
 			.media
 				.media-left
-					a(href='#')
-					img.media-object(src=movie.Poster, alt='Responsive image').img-fluid
+					a(href='/FicheFilm/?titre='+movie.Title)
+						if(movie.Poster==null)
+							img.media-object(src='/images/No-image-found.jpg', alt='Responsive image').img-fluid
+						else
+							img.media-object(src=movie.Poster, alt='Responsive image').img-fluid
 				.media-body
 					h4.media-heading #{movie.Title}
 					hr

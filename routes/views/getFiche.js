@@ -14,12 +14,14 @@ exports = module.exports = function(req, res) {
 	locals.section = 'movie';
 	
 	var data= req.query;
+	console.log(req.query);
 	
 	movie.model.find(({"Title": data.titre}))
 			.exec()
 			.then(function (movies) { //first promise fulfilled
+				console.log(movies[0].Titre);
 				locals.data.movie=movies;
-				view.render('top100');
+				view.render('movie');
 			}, function (err) { //first promise rejected
 				throw err;
 			}).then(function (result) {

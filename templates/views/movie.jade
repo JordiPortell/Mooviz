@@ -1,29 +1,30 @@
 //Created by jordi_2 on 12/05/2016.
 extends ../layouts/default
-
 block content
 	.container
-		h3 Fiche technique
+		hr
+		h3 Fiche de film
 		.row
-			.media
-				.media-left
-					a(href='#')
-					img.media-object(src=data.movie.Poster, alt='')
-				.media-body
-					br
-					h4.media-heading #{data.movie.Title}
-					hr
-					hr
-					ul
-						li Date : #{(movie.Released!=null?movie.Released.toDateString():'Inconnue')}
-						li Durée : #{data.movie.Runtime} minutes
-						li Réalisateur : #{data.movie.Director}
-						li Casting : #{data.movie.Actors}
-						li Genres : #{data.movie.Genre}
-						li Nationalité : #{data.movie.Country}
-						li Note : #{data.movie.imdbRating}/10
-					.panel.panel-default
-						.panel-heading
-							h3.panel-title Synopsis
-						.panel-body
-							.panel-body #{data.movie.Plot}
+			br
+	each movie in data.movie
+		.media
+			.media-left
+				a(href='#')
+				img.media-object(src=movie.Poster, alt='Responsive image').img-fluid
+			.media-body
+				h4.media-heading #{movie.Title}
+				hr
+				hr
+				ul
+					li Date : #{(movie.Released != null ? movie.Released.toDateString() : 'Inconnue')}
+					li Durée : #{movie.Runtime} minutes
+					li Réalisateur : #{movie.Director}
+					li Casting : #{movie.Actors}
+					li Genres : #{movie.Genre}
+					li Nationalité : #{movie.Country}
+					li Note : #{movie.imdbRating}/10
+				.panel.panel-default
+					.panel-heading
+						h3.panel-title Synopsis
+					.panel-body
+						.panel-body #{movie.Plot}

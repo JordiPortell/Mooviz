@@ -47,7 +47,8 @@ exports = module.exports = function(app) {
 	app.post('/ajoutadmin2', routes.views.ajoutadmin2);
 	app.all('/contact', routes.views.contact);
 	app.get('/search', routes.views.search);
-	app.get('/categorie', routes.views.categorie)
+	app.get('/categorie', routes.views.categorie);
+	app.get('/FicheFilm/', routes.views.getFiche);
 	
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
