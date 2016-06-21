@@ -18,3 +18,7 @@
 .img-rounded:hover {
 	opacity: 0.3; filter: alpha(opacity=30);
 }
+img {
+	width:200px;
+	height:300px;
+}

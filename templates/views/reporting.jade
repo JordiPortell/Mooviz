@@ -1,10 +1,19 @@
-//Created by Alexandre on 21/06/2016.
 extends ../layouts/default
 block content
 	.container
-		hr
-		h3 Reporting
 		.row
-			br
-			li Résultat : #{data.movie.nbGenre}
-			
+			hr
+			h3 Reporting
+				br
+				table.table
+					thead.thead-default
+						tr(scope='row')
+							th Genre
+							th Résultat
+					tbody
+						each movie in data.Genre
+							if(movie._id!=null)
+								tr(scope='row')
+									th #{movie._id}
+									th #{movie.count}
+
