@@ -52,16 +52,16 @@ html
 						ul.nav.navbar-nav
 							li.dropdown
 								a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-									| Films 
+									| Movies 
 									span.caret
 								ul.dropdown-menu
 									li
 										a(href='/top100?page=1') Top 100
 									li
-										a(href='/nouveaute?page=1') Nouveauté
+										a(href='/nouveaute?page=1') New movies
 							li.dropdown
 								a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-									| Catégories 
+									| Categories 
 									span.caret
 								ul.dropdown-menu
 									li
@@ -70,6 +70,10 @@ html
 										a(href='/categorie?cat=Adult') Adult
 									li
 										a(href='/categorie?cat=Adventure') Adventure
+									li
+										a(href='/categorie?cat=Animation') Animation
+									li
+										a(href='/categorie?cat=Biography') Biography
 									li
 										a(href='/categorie?cat=Comedy') Comedy
 									li
@@ -80,6 +84,8 @@ html
 										a(href='/categorie?cat=Drama') Drama
 									li
 										a(href='/categorie?cat=Fantasy') Fantasy
+									li
+										a(href='/categorie?cat=Horror') Horror
 									li
 										a(href='/categorie?cat=History') History
 									li
@@ -93,7 +99,13 @@ html
 									li
 										a(href='/categorie?cat=Short') Short
 									li
+										a(href='/categorie?cat=Sport') Sport
+									li
+										a(href='/categorie?cat=Thriller') Thriller
+									li
 										a(href='/categorie?cat=War') War
+									li
+										a(href='/categorie?cat=Western') Western
 									
 									
 							li.dropdown
@@ -102,7 +114,9 @@ html
 									span.caret
 								ul.dropdown-menu
 									li
-										a(href='/ajoutfilm') Ajouter des films
+										a(href='/ajoutfilm') Add movies
+									li
+										a(href='/reporting') Reporting
 						ul.nav.navbar-nav.navbar-right
 							form(action='/search',method='get')
 								form.navbar-form.navbar-right

@@ -4,7 +4,7 @@ extends ../layouts/default
 block content
 	.container
 		hr
-		h3 Recherche de film
+		h3 Movie search
 		.row
 		hr
 	if data.movie.length		
@@ -22,12 +22,12 @@ block content
 					hr
 					ul
 						li Date : #{(movie.Released!=null?movie.Released.toDateString():'Inconnue')}
-						li Durée : #{movie.Runtime} minutes
-						li Réalisateur : #{movie.Director}
+						li Duration : #{movie.Runtime} minutes
+						li Realisator : #{movie.Director}
 						li Casting : #{movie.Actors}
 						li Genres : #{movie.Genre}
-						li Nationalité : #{movie.Country}
-						li Note : #{movie.imdbRating}/10
+						li Country : #{movie.Country}
+						li Rating : #{movie.imdbRating}/10
 					.panel.panel-default
 						.panel-heading
 							h3.panel-title Synopsis

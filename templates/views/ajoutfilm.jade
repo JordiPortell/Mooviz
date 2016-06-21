@@ -4,26 +4,26 @@ extends ../layouts/default
 block content
 	.container
 		br
-		h3 Rechercher un film par son nom dans la base IMDB
+		h3 Look for a movie by his name in the IMDB database
 			.row
 				br
 				if(data.errSearchQuery!='ok')
 					.alert.alert-danger
-						strong Erreur !
+						strong Error !
 							data.errSearchQuery
 				form(method='post', action='/ajoutadmin1')
 					input(type='hidden', name='action', value='search')
 					.input-group.col-xs-3(name='moviesearch')
 						input.form-control(type='text', name='film')
 						span.input-group-btn
-							button.btn.btn-default(type='submit') Rechercher
+							button.btn.btn-default(type='submit') Search
 		br
 		br
-		h3 Importer une liste de films
+		h3 Import a list of movies
 			.row
 				br
 				form(method='post', action='/ajoutadmin2')
 					.input-group.col-xs-3(name='moviesearch2')
 						input.filestyle(type='file', data-input='false', name='films')
 						span.input-group-btn
-							button.btn.btn-default(type='submit') Valider
+							button.btn.btn-default(type='submit') Submit

@@ -16,13 +16,13 @@ block content
 				hr
 				hr
 				ul
-					li Date : #{(movie.Released != null ? movie.Released.toDateString() : 'Inconnue')}
-					li Durée : #{movie.Runtime} minutes
-					li Réalisateur : #{movie.Director}
+					li Date : #{(movie.Released!=null?movie.Released.toDateString():'Inconnue')}
+					li Duration : #{movie.Runtime} minutes
+					li Realisator : #{movie.Director}
 					li Casting : #{movie.Actors}
 					li Genres : #{movie.Genre}
-					li Nationalité : #{movie.Country}
-					li Note : #{movie.imdbRating}/10
+					li Country : #{movie.Country}
+					li Rating : #{movie.imdbRating}/10
 				.panel.panel-default
 					.panel-heading
 						h3.panel-title Synopsis
