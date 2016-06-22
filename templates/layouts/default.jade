@@ -106,17 +106,20 @@ html
 										a(href='/categorie?cat=War') War
 									li
 										a(href='/categorie?cat=Western') Western
-									
-									
-							li.dropdown
-								a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-									| Admin 
-									span.caret
-								ul.dropdown-menu
-									li
-										a(href='/ajoutfilm') Add movies
-									li
-										a(href='/reporting') Reporting
+							if user && user.canAccessKeystone
+								li.dropdown
+									a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+										| Admin 
+										span.caret
+									ul.dropdown-menu
+										li
+											a(href='/ajoutfilm') Add movies
+										li
+											a(href='/reporting') Reporting
+										li
+											a(href='/keystone/') Database management
+								
+											
 						ul.nav.navbar-nav.navbar-right
 							form(action='/search',method='get')
 								form.navbar-form.navbar-right
